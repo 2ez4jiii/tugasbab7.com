@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Pembelian</title>
+  <style>
+    body {
+      overflow: hidden; /* Menyembunyikan overflow agar video mengisi seluruh layar */
+      margin: 0; /* Menghilangkan margin untuk memastikan video menutupi seluruh area */
+    }
+    video#bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Menyesuaikan ukuran video agar selalu terlihat secara proporsional */
+      z-index: -1;
+    }
+    table {
+      border-collapse: collapse;
+      width: 50%;
+      margin: 0 auto; /* Mengatur agar tabel berada di tengah */
+      background-color: rgba(255, 255, 255, 0.5); /* Menambahkan lapisan transparan pada tabel */
+      border-radius: 10px; /* Menambahkan sudut bulat pada tabel */
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    h1 {
+      text-align: center;
+    }
+    form {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="mp3/frieren_ost_eps12.mp3" type="audio/mpeg">
+  </audio>
+
+  <video autoplay muted loop id="bg-video">
+    <source src="background_video/frierenfield.mp4" type="video/mp4"> <!-- Buat ganti background video -->
+  </video>
+
+  <h1>Form Pembelian Barang Sederhana</h1>
+  <form id="purchase-form" action="3_process.html" method="post">
+    <table>
+      <tr>
+        <td>Nama Pembeli:</td>
+        <td><input type="text" id="nama_pembeli" name="nama_pembeli"></td>
+      </tr>
+      <tr>
+        <td>Kode Buku:</td>
+        <td>
+          <select id="kode_buku" name="Kode_Buku">
+            <option value="B0001">B0001</option>
+            <option value="B0002">B0002</option>
+            <option value="B0003">B0003</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Jumlah Beli:</td>
+        <td><input type="text" id="jumlah_beli" name="jumlah_beli"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="submit" value="Save"></td>
+      </tr>
+    </table>
+  </form>
+
+  <script>
+    function savePurchase() {
+      var nama_pembeli = document.getElementById('nama_pembeli').value;
+      var kode_buku = document.getElementById('kode_buku').value;
+      var jumlah_beli = document.getElementById('jumlah_beli').value;
+
+      // Validasi apakah field Nama Pembeli dan Jumlah Beli sudah diisi
+      if (nama_pembeli.trim() === '' || jumlah_beli.trim() === '') {
+        alert('Mohon lengkapi semua field sebelum menyimpan!');
+        return false; // Prevent form submission if validation fails
+      }
+      return true; // Allow form submission if validation passes
+    }
+  </script>
+</body>
+</html>
